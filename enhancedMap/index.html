@@ -19,7 +19,8 @@
     <script src="https://js.arcgis.com/4.25/"></script>
     
     <script>
-      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Track",  "esri/Graphic"], function(esriConfig, Map, MapView, Locate, Track, Graphic) {
+      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Track",  "esri/Graphic", "esri/layers/FeatureLayer"
+], function(esriConfig, Map, MapView, Locate, Track, Graphic, FeatureLayer) {
      
         esriConfig.apiKey = "AAPK4030c0c4334e46eeb057cc7d0491179744ySBz0zV38yBpdipJFPPy0wpV8i7XhNZQPJJRA_sZx9lNQPTS7gc3_gWfwq-85M";
 
@@ -33,6 +34,14 @@
           zoom: 2, // Zoom level
           container: "viewDiv" // Div element
         });
+        
+        //Trailheads feature layer (points)
+  const policestationsLayer = new FeatureLayer({
+    url: "https://services1.arcgis.com/pMeXRvgWClLJZr3s/arcgis/rest/services/Police_Facility_Locations/FeatureServer"
+  });
+        
+       map.add(policestationsLayer);
+        
          const track = new Track({
           view: view,
           graphic: new Graphic({
